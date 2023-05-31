@@ -90,5 +90,105 @@ public class Archivos {
 		} 
 
 	}	
+	
+	public void leeConMemoriaIntermedia() {
+
+		try {
+
+			FileReader archivo =new FileReader("C:"+File.separator+"Users"+File.separator+"Angel"+
+					File.separator+"eclipse-workspace"+File.separator+"CursoJava"+File.separator+"src"+
+					File.separator+"archivo.txt",Charset.forName("UTF8"));
+
+			BufferedReader miMemoriaIntermedia= new BufferedReader(archivo);
+
+			String linea="";
+
+			while(linea!=null)
+			{
+				//Una linea es considerada hasta que encuentre un salto de linea \n o un retorno de carro \r 
+				linea = miMemoriaIntermedia.readLine();
+
+				if(linea!=null)
+				{
+					System.out.println(linea);
+				}
+			}
+
+			archivo.close();
+
+		} catch (IOException e) {
+			System.out.println("No se ha encontrado el archivo");
+		} 
+
+	}	
+
+	public int[] leeBytes()
+	{
+		int contadorBytes=0;
+		int[] listaBytes=null;
+		
+		try {
+
+			FileInputStream archivoBytes =new FileInputStream("C:"+File.separator+"Users"+File.separator+"Angel"+
+					File.separator+"eclipse-workspace"+File.separator+"CursoJava"+File.separator+"src"+
+					File.separator+"recuerdo.jpg");
+
+			boolean finalArchivo=false;
+			
+			while(!finalArchivo) 
+			{
+				int byteEntrada=archivoBytes.read();
+				
+				if(byteEntrada==-1)
+				{
+					finalArchivo=true;
+				}
+				
+				System.out.println(byteEntrada);
+				contadorBytes++;
+			}
+			
+			
+			//-------------GUARDA----------------------------------------
+			System.out.println(contadorBytes);
+			
+			archivoBytes =new FileInputStream("C:"+File.separator+"Users"+File.separator+"Angel"+
+					File.separator+"eclipse-workspace"+File.separator+"CursoJava"+File.separator+"src"+
+					File.separator+"recuerdo.jpg");
+			listaBytes=new int[contadorBytes];
+			contadorBytes=0;			
+			finalArchivo=false;
+			
+			
+			while(!finalArchivo) 
+			{
+				int byteEntrada=archivoBytes.read();
+				
+				if(byteEntrada!=-1)
+				{
+					listaBytes[contadorBytes]=byteEntrada;					
+				}
+				else
+				{
+					finalArchivo=true;
+				}
+				
+				System.out.println("Indice: " + contadorBytes+ " Byte: "+listaBytes[contadorBytes]);
+				contadorBytes++;
+			}
+
+			
+			archivoBytes.close();
+
+		} catch (IOException e) {
+			System.out.println("Error al leer el archivo");
+		} 
+		
+		
+		return listaBytes;
+
+	}
+
+
 
 }
