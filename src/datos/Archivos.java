@@ -189,6 +189,73 @@ public class Archivos {
 
 	}
 
+	//Siempre crea el archivo nuevo y lo escribe 
+	public void escribe(String frase)
+	{
+		try {
+
+			FileWriter archivo=new FileWriter("C:"+File.separator+"Users"+File.separator+"Angel"+
+					File.separator+"eclipse-workspace"+File.separator+"CursoJava"+File.separator+"src"+
+					File.separator+"archivo2.txt");
+
+			for(int i=0;i<frase.length();i++)
+			{
+				archivo.write(frase.charAt(i));				
+			}
+
+			archivo.close();
+		}catch(IOException e) {
+
+			System.out.println("No se ha encontrado el archivo");
+		}
+
+	}
+
+	//Si se require sobreescribir 
+	public void sobreEscribe(String frase)
+	{
+		try {
+
+			FileWriter archivo=new FileWriter("C:"+File.separator+"Users"+File.separator+"Angel"+
+					File.separator+"eclipse-workspace"+File.separator+"CursoJava"+File.separator+"src"+
+					File.separator+"archivo2.txt",true);
+
+			for(int i=0;i<frase.length();i++)
+			{
+				archivo.write(frase.charAt(i));				
+			}
+
+			archivo.close();
+		}catch(IOException e) {
+
+			System.out.println("No se ha encontrado el archivo");
+		}
+
+	}
+
+
+	public void escribeBytes(int[] listaBytes)
+	{
+		try {
+
+			FileOutputStream archivoNuevo =new FileOutputStream("C:"+File.separator+"Users"+File.separator+"Angel"+
+					File.separator+"eclipse-workspace"+File.separator+"CursoJava"+File.separator+"src"+
+					File.separator+"copiaImagen.jpg");
+			
+			for(int i=0;i<listaBytes.length;i++)
+			{
+				archivoNuevo.write(listaBytes[i]);
+				
+			}
+			
+			archivoNuevo.close();
+
+		} catch (IOException e) {
+			System.out.println("Erro al crear el archivo");
+		} 
+
+		
+	}
 
 
 }
